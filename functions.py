@@ -1,3 +1,7 @@
+import re
+from typing import List
+
+
 def filter_query(param, data):
     """
     Для фильтровации строки входных данных.
@@ -37,3 +41,11 @@ def limit_query(param, data):
     """
     limit = int(param)
     return list(data)[:limit]
+
+
+def regex_query(param: str, data: List[str]) -> List[str]:
+    regex = re.compile(param)
+    return list(filter(lambda x: re.search(regex, x), data))
+
+
+
